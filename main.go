@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"net/http"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -29,8 +30,18 @@ func main() {
 	var b int = 2
 	b, a = a, b
 	log.Error().Int("a", a).Int("b", b).Msg("")
+	var c int = 1
+	c = 2
+	log.Error().Int("c", c).Msg("")
+	m1, _ := GetMoney()
+	log.Error().Int("m1", m1).Msg("")
+	http.ListenAndServe(":8080", nil)
+
 }
 
+func GetMoney() (int,int) {
+	return 1,2
+}
 func inner() error {
 	return errors.New("seems we have an error here")
 }
